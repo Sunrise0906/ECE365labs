@@ -32,7 +32,7 @@ class Question2(object):
             means[i] = np.sum(trainfeat[trainlabel == i], axis=0) / trainfeat[trainlabel == i].shape[0]
         for i in range(nlabels):
             cov += np.dot((trainfeat[trainlabel == i] - means[i]).T, (trainfeat[trainlabel == i] - means[i]))
-        cov /= trainfeat.shape[0]
+        cov /= trainfeat.shape[0] - means.shape[0]  # divided by N-M
 
         # Don't change the output!
         return (pi,means,cov)
@@ -70,7 +70,7 @@ class Question3(object):
             for j in range(k):
                 k_labels[i][j] = trainlabel[index[i][j]]
 
-        labels = stats.mode(k_labels, axis=1)[0].T  # (1, V)
+        labels = stats.mode(k_labels, axis=1)[0][:, 0]  # (V, 1)
         return labels
 
     def kNN_errors(self,trainingdata, traininglabels, valdata, vallabels):
