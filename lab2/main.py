@@ -70,7 +70,7 @@ class Question3(object):
             for j in range(k):
                 k_labels[i][j] = trainlabel[index[i][j]]
 
-        labels = stats.mode(k_labels, axis=1)[0][:, 0]  # (V, 1)
+        labels = stats.mode(k_labels, axis=1)[0][:, 0]  # (V, )
         return labels
 
     def kNN_errors(self,trainingdata, traininglabels, valdata, vallabels):
