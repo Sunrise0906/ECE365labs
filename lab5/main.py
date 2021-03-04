@@ -142,7 +142,7 @@ class Question3(object):
             ve[i - 1] = np.sum(est != vallabels) / vallabels.shape[0]
         index = np.argmin(ve)
         min_ve = ve[index]
-        pca_feat = index + 1l
+        pca_feat = index + 1
        
         return ve, min_ve, pca_feat
     
